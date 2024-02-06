@@ -48,7 +48,7 @@ class PostController extends Controller
         // add Post Added flash message
         session()->flash('message', 'Post Saved');
 
-        return redirect()->route('posts.posts-index');
+        return redirect()->route('posts.index');
     }
 
     /**
