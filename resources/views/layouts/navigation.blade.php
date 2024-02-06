@@ -33,6 +33,13 @@
                     </x-nav-link>
                 </div>
 
+                <!-- groups -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups')">
+                        {{ __('Groups') }}
+                    </x-nav-link>
+                </div>
+
                 <!-- artists -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('artists.index')" :active="request()->routeIs('artists')">

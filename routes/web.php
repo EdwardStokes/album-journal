@@ -55,6 +55,16 @@ Route::middleware('auth')->group(function () {
         'update' => 'artists.update',
         'destroy' => 'artists.destroy',
     ]); 
+
+    Route::resource('/groups', \App\Http\Controllers\GroupController::class)->names([
+        'index' => 'groups.index',
+        'create' => 'groups.create',
+        'store' => 'groups.store',
+        'show' => 'groups.show',
+        'edit' => 'groups.edit',
+        'update' => 'groups.update',
+        'destroy' => 'groups.destroy',
+    ]);
 });
 
 require __DIR__.'/auth.php';

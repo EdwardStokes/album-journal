@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
 use App\Models\Artist;
+use App\Models\Group;
+
 use Illuminate\Http\Request;
 
-class ArtistController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $artists = Artist::orderBy('name')->get();
-        return view('artists.artists-index', [
-            'artists' => $artists
+        $groups = Group::orderBy('name')->get();
+        return view('groups.groups-index', [
+            'groups' => $groups
         ]);
     }
 
@@ -24,8 +25,10 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        return view('artists.artists-create', [
-            
+        // get artists
+        $artists = Artist::orderBy('name')->get();
+        return view('groups.groups-create', [
+            'artists' => $artists,
         ]);
     }
 
@@ -35,22 +38,27 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         // create a new album from the request
-        Artist::create([
+        $group = Group::create([
             'name' => $request->name,
-            'dob' => $request->dob,
             'biography' => $request->biography,
             'image' => $request->image,
         ]);
+
         // Save image to storage and add to db
         if (request()->has('image')) {
             $imagePath = $request->file('image')->store('uploads', 'public');
-            $album->image = $imagePath;
-            $album->save();
+            $group->image = $imagePath;
+            $group->save();
+        }
+
+        // add artists
+        if (request()->has('artists')) {
+            $group->artists()->attach(request('artists'));
         }
         // add Album Added flash message
-        session()->flash('message', 'Artist Added');
+        session()->flash('message', 'Group Added');
 
-        return redirect()->route('artists.index');
+        return redirect()->route('groups.index');
     }
 
     /**
