@@ -8,7 +8,7 @@
             </p>
     </h2>
     <!-- form for adding new album object -->
-    <form method="POST" action="{{ route('albums.store') }}" class="mt-6 space-y-6">
+    <form method="POST" encty action="{{ route('albums.store') }}" class="mt-6 space-y-6">
         @csrf
 
         <div>
@@ -32,7 +32,7 @@
 
         <div>
             <x-input-label for="image" :value="__('Image')" />
-            <x-text-input id="image" name="image" type="text" class="mt-1 block w-full" autofocus />
+            <x-text-input id="image" name="image" type="text" class="mt-1 block w-full form-control" type="file" autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 

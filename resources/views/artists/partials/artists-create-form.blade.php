@@ -18,15 +18,15 @@
         </div>
 
         <div>
-            <x-input-label for="dob" :value="__('Date of Birth')" />
-            <x-text-input id="dob" name="dob" type="date" class="mt-1 block w-full" autofocus />
-            <x-input-error class="mt-2" :messages="$errors->get('dob')" />
+            <x-input-label for="image" :value="__('Image')" />
+            <x-text-input id="image" name="image" type="text" class="mt-1 block w-full form-control" type="file" autofocus />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
         <div>
-            <x-input-label for="image" :value="__('Image')" />
-            <x-text-input id="image" name="image" type="text" class="mt-1 block w-full" autofocus />
-            <x-input-error class="mt-2" :messages="$errors->get('image')" />
+            <x-input-label for="dob" :value="__('Date of Birth')" />
+            <x-text-input id="dob" name="dob" type="date" class="mt-1 block w-full" autofocus />
+            <x-input-error class="mt-2" :messages="$errors->get('dob')" />
         </div>
 
         <div>

@@ -36,18 +36,23 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         // create a new album from the request
-        Album::create([
+        $album = Album::create([
             'title' => $request->title,
             'release_date' => $request->release_date,
             'description' => $request->description,
-            'image' => $request->image,
         ]);
+        // Save image to storage and add to db
+        if (request()->has('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $album->image = $imagePath;
+            $album->save();
+        }
         // attach artist many to many relationship
         $album->artists()->attach($request->artists);
         // add Album Added flash message
         session()->flash('message', 'Album Added');
 
-        return redirect()->route('albums.albums-index');
+        return redirect()->route('albums.index');
     }
 
     /**
