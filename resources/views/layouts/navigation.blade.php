@@ -32,6 +32,13 @@
                         {{ __('Albums') }}
                     </x-nav-link>
                 </div>
+
+                <!-- artists -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('artists.index')" :active="request()->routeIs('artists')">
+                        {{ __('Artists') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

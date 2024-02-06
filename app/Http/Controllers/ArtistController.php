@@ -6,16 +6,16 @@ use App\Models\Album;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 
-class AlbumController extends Controller
+class ArtistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $albums = Album::orderBy('title')->get();
-        return view('albums.albums-index', [
-            'albums' => $albums
+        $artists = Artist::orderBy('name')->get();
+        return view('artists.artists-index', [
+            'artists' => $artists
         ]);
     }
 
@@ -24,9 +24,8 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        $artists = Artist::select('id', 'name')->orderBy('name')->get();
-        return view('albums.albums-create', [
-            'artists' => $artists
+        return view('artists.artists-create', [
+            
         ]);
     }
 
@@ -36,18 +35,16 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         // create a new album from the request
-        Album::create([
-            'title' => $request->title,
-            'release_date' => $request->release_date,
-            'description' => $request->description,
+        Artist::create([
+            'name' => $request->name,
+            'dob' => $request->dob,
+            'biography' => $request->biography,
             'image' => $request->image,
         ]);
-        // attach artist many to many relationship
-        $album->artists()->attach($request->artists);
         // add Album Added flash message
-        session()->flash('message', 'Album Added');
+        session()->flash('message', 'Artist Added');
 
-        return redirect()->route('albums.albums-index');
+        return redirect()->route('artists.index');
     }
 
     /**

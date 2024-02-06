@@ -46,15 +46,15 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'albums.destroy',
     ]);
 
-    // Route::resource('/artists', \App\Http\Controllers\ArtistController::class)->names([
-    //     'index' => 'artists.index',
-    //     'create' => 'artists.create',
-    //     'store' => 'artists.store',
-    //     'show' => 'artists.show',
-    //     'edit' => 'artists.edit',
-    //     'update' => 'artists.update',
-    //     'destroy' => 'artists.destroy',
-    // ]);
+    Route::resource('/artists', \App\Http\Controllers\ArtistController::class)->names([
+        'index' => 'artists.index',
+        'create' => 'artists.create',
+        'store' => 'artists.store',
+        'show' => 'artists.show',
+        'edit' => 'artists.edit',
+        'update' => 'artists.update',
+        'destroy' => 'artists.destroy',
+    ]); 
 });
 
 require __DIR__.'/auth.php';

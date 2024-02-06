@@ -17,6 +17,13 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        <!-- artists multi select -->
+        <div>
+            <x-input-label for="artists" :value="__('Artists')" />
+            <x-multiselect id="artists" name="artists[]" :options="$artists" class="mt-1 block w-full" required autofocus />
+            <x-input-error class="mt-2" :messages="$errors->get('artists')" />
+        </div>
+
         <div>
             <x-input-label for="release_date" :value="__('Release Date')" />
             <x-text-input id="release_date" name="release_date" type="date" class="mt-1 block w-full" required autofocus />
